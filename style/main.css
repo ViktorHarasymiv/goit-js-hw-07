@@ -1,0 +1,17 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .standart_contetn--block {
+    margin-bottom: 150px
+  }
+  
+  .form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 32px;
+  }
