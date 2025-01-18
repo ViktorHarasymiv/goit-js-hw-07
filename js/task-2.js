@@ -26,31 +26,18 @@ const images = [
 ];
 
 
-const galleryList = document.querySelector('.gallery');
+const galleryContainer = document.querySelector('.gallery');
 
-console.log(galleryList);
+const galleryItems = images.map(({ url, alt }) => { 
+  const li = document.createElement('li'); 
+  li.className = 'gallery-item';
 
+  const img = document.createElement('img');
+  img.src = url;
+  img.alt = alt;
 
- images.forEach(items => {
-  /* create element */
+  li.appendChild(img);
+  return li;
+});
 
-  const galleryLink = document.createElement('li');
-  const imageTag = document.createElement('img');
-
-  /* add tag */
-
-  galleryList.append(galleryLink);
-  galleryLink.append(imageTag);
-
-  /* add content from obj array image */ 
-
-  imageTag.src = items.url;
-  imageTag.alt = items.alt;
-
-  galleryLink.classList.add('gallery_list');
- })
-
- 
-
-
-
+galleryContainer.append(...galleryItems);

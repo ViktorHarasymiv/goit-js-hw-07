@@ -33,44 +33,23 @@ function handleSubmit(event) {
 
     const form = event.target;
     
-    const login = form.elements.email.value;
+    const email = form.elements.email.value;
     const password = form.elements.password.value;
 
-    if (login === "" && password === "") {
-        validEmail.innerHTML = "Please enter email";
-        validPass.innerHTML = "Please enter password";
-
-        return;
-      }
-
-    if (login === "") {
-        validEmail.innerHTML = "Please enter email";
-        return;
+    const formState = {
+      email: email,
+      password: password
     }
 
-    if (login !== "") {
-        validEmail.innerHTML = "";
+    if (email === "") {
+        return alert("All form fields must be filled in");
     }
 
     if (password === "") {
-        validPass.innerHTML = "Please enter password";
-        return;
+      return alert("All form fields must be filled in");
     }
 
-    if (password !== "") {
-        validPass.innerHTML = "";
-    }
-
-    alert(`
-    Login : ${login}
-    Password : ${password}`
-    );
-
-    validEmail.innerHTML = "";
-    validPass.innerHTML = "";
     form.reset();
-}
-function handleResetSubmit() {
-    validEmail.innerHTML = "";
-    validPass.innerHTML = "";
+
+    console.log(formState);
 }

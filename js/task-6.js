@@ -1,76 +1,58 @@
-const changeAmout = document.querySelector('.changeAmout');
+const inputAmout = document.getElementById('changeAmout');
 const incAmout = document.querySelector('[data-create]');
 const destroyBtn = document.querySelector('[data-destroy]');
 
 const boxes = document.querySelector('#boxes');
-const boxItems = '<div></div>';
 
-const maxValue = 10;
-const minValue = 0;
-
-let width = 30; 
-let height = 30; 
 const increment = 10;
 
 // L I S T E N E R  E V E N T S
 
-changeAmout.addEventListener("input", (event) => {
-  let newValue = event.target.value;
+incAmout.addEventListener("click", () => {
+  const amount = parseInt(inputAmout.value);
+console.log(amount);
 
-  if(newValue > maxValue) {
-    changeAmout.value = '';
-    alert('Введено максимальну допустиму кількість')
-    return;
+  if(amount >= 1 && amount <= 100) {
+    createBoxes(amount);
+    inputAmout.value = 0;
   }
-  if(newValue < minValue) {
-    changeAmout.value = '';
-    alert('Введено відємне значення')
-    return;
-  }
-
-  return newValue;
+  else {
+    alert('Введіть значення від 1 до 100')
 }
-);
-
-incAmout.addEventListener("click", handleSubmit);
-
-destroyBtn.addEventListener("click", () => {
-  while (boxes.firstChild) {
-     boxes.removeChild(boxes.firstChild);
-  }
-  width = 30;
-  height = 30;
 });
 
+destroyBtn.addEventListener("click", () => {
+  inputAmout.value = 0;
+  boxes.innerHTML = '';
+});
 
 //  F U N C T I O N
 
-function handleSubmit() {
-  
-  while (boxes.firstChild) {
-    boxes.removeChild(boxes.firstChild);
-    width = 30;
-    height = 30;
-}
-  for(let i = 0; i < changeAmout.value; i++) {
+function createBoxes(amount) {
+    boxes.innerHTML = '';
+    const container = document.createElement("div");
+    container.classList.add("box_container");
+    let width = 30;
+    let height = 30;
 
-    const boxItem = document.createElement("div");
-    boxItem.classList.add('box-element');
+  for(let i = 0; i < amount; i++) {
 
-    
-    boxItem.style.backgroundColor = getRandomHexColor();
+      const boxItem = document.createElement("div");
 
-  width += increment; 
-  height += increment;
+      boxItem.style.width = `${width}px`;
+      boxItem.style.height = `${height}px`;
 
-  boxItem.style.width = `${width}px`;
-  boxItem.style.height = `${height}px`;
+      boxItem.style.backgroundColor = getRandomHexColor();
 
-  
-  boxes.append(boxItem);
+      container.appendChild(boxItem); 
+
+      width += increment; 
+      height += increment;
+    }
+
+    boxes.appendChild(container);
 } 
-changeAmout.value = '';
-};
+
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)

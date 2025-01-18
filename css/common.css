@@ -261,6 +261,7 @@ color: #2e2f42;
 }
 
 /*  TASK-6   */
+
 .wrapper {
   max-width: 550px;
 }
@@ -289,21 +290,14 @@ color: #2e2f42;
 
   border-radius: 8px;
 
-  
-
   padding: 32px;
 
-  width: 100%;
 }
 
-.changeAmout {
-  width: 150px;
-  height: 40px;
+.box_container {
+  max-width: 486px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 44px;
 }
-
-.box-element {
-}
-
-
-
-
