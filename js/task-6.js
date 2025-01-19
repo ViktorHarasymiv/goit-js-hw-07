@@ -4,8 +4,6 @@ const destroyBtn = document.querySelector('[data-destroy]');
 
 const boxes = document.querySelector('#boxes');
 
-const increment = 10;
-
 // L I S T E N E R  E V E N T S
 
 incAmout.addEventListener("click", () => {
@@ -30,27 +28,27 @@ destroyBtn.addEventListener("click", () => {
 
 function createBoxes(amount) {
     boxes.innerHTML = '';
-    const container = document.createElement("div");
-    container.classList.add("box_container");
+    let fragment = document.createDocumentFragment();
+    
+    const increment = 10;
     let width = 30;
     let height = 30;
 
   for(let i = 0; i < amount; i++) {
-
-      const boxItem = document.createElement("div");
+    const boxItem = document.createElement("div");
 
       boxItem.style.width = `${width}px`;
       boxItem.style.height = `${height}px`;
 
       boxItem.style.backgroundColor = getRandomHexColor();
 
-      container.appendChild(boxItem); 
+      fragment.appendChild(boxItem); 
 
       width += increment; 
       height += increment;
     }
 
-    boxes.appendChild(container);
+    boxes.appendChild(fragment);
 } 
 
 
